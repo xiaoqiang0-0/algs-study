@@ -1,6 +1,5 @@
 package com.xiaoqiang.algorithms;
 
-import edu.princeton.cs.algs4.StdDraw;
 
 import java.util.Arrays;
 
