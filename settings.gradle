@@ -1,0 +1,3 @@
+rootProject.name = 'algorithms'
+include 'chapter-1'
+
