@@ -8,8 +8,7 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    maven {url 'file:///F:/m2/repository'}
-    maven { url 'file:///D:/m2/repo/' }
+    maven {url 'http://aliyun.jeqah.cn:8081/repository/maven-public/'}
     mavenCentral()
 }
 
