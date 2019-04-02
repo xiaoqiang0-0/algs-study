@@ -1,3 +1,4 @@
 rootProject.name = 'algorithms'
 include 'chapter-1'
+include 'algs-interview'
 
