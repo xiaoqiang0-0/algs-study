@@ -1,5 +1,9 @@
 package com.xiaoqiang.algs.geetktime;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * 字典树
  */
@@ -9,12 +13,14 @@ public class PrefixTrie {
 
     public static class Node {
         char c;
+        String preFix;
         Node[] childs = new Node[CHAR_SIZE];
         boolean isWordEnd;
 
         public Node(char c) {
             this.c = c;
             isWordEnd = false;
+            preFix = "";
         }
     }
 
@@ -35,6 +41,7 @@ public class PrefixTrie {
             Node cur = pre.childs[lowerCaseChars[i] - CHAR_STARTER];
             if (cur == null) {
                 cur = new Node(lowerCaseChars[i]);
+                cur.preFix += pre.preFix + lowerCaseChars[i];
                 pre.childs[lowerCaseChars[i] - CHAR_STARTER] = cur;
             }
             if (i == lowerCaseChars.length - 1) {
@@ -68,6 +75,30 @@ public class PrefixTrie {
         return false;
     }
 
+    /**
+     * 深度优先遍历获取所有单词
+     *
+     * @return
+     */
+    public List<String> dfsGetAllWord() {
+        List<String> words = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node node = stack.pop();
+            if (node.isWordEnd) {
+                words.add(node.preFix);
+            }
+            for (Node child : node.childs) {
+                if (child != null) {
+                    stack.push(child);
+                }
+            }
+        }
+
+        return words;
+    }
+
     public static void main(String[] args) {
         PrefixTrie trie = new PrefixTrie();
         String line = "GitHub is built for collaboration Set up an organization to improve the way your team works together and get access to more features";
@@ -75,6 +106,8 @@ public class PrefixTrie {
         for (String word : words) {
             trie.put(word);
         }
-        System.out.println(trie.isValidWord("github"));
+//        System.out.println(trie.isValidWord("a"));
+        List<String> word = trie.dfsGetAllWord();
+        System.out.println(word);
     }
 }
