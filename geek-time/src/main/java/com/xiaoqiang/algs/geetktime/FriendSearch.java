@@ -11,11 +11,13 @@ public class FriendSearch {
         int userId;
         HashSet<Integer> friends;
         int degree;
+        int fromId;
 
         public Node(int userId) {
             this.userId = userId;
             this.friends = new HashSet<>();
             this.degree = 0;
+            this.fromId = -1;
         }
 
     }
@@ -59,6 +61,90 @@ public class FriendSearch {
         return fMap;
     }
 
+    /**
+     * 双路队列遍历，查找用户A,B之间的最短路径
+     *
+     * @param userIdA 用户A的id
+     * @param userIdB 用户B的id
+     * @return A->B 的最短关系链
+     */
+    public FriendLink getMinFriendLink(int userIdA, int userIdB) {
+        LinkedList<Integer> friendLeftLink = new LinkedList<>();
+        LinkedList<Integer> friendRightLink = new LinkedList<>();
+        Queue<Integer> queueA = new LinkedList<>();
+        Queue<Integer> queueB = new LinkedList<>();
+        queueA.offer(userIdA);
+        queueB.offer(userIdB);
+        HashSet<Integer> commonFriendSet = null;
+        Node leftA = new Node(-1);
+        Node rightB = new Node(-1);
+
+        while (!queueA.isEmpty() && !queueB.isEmpty()) {
+            Node userA = getUser(queueA.poll());
+            Node userB = getUser(queueB.poll());
+
+            HashSet<Integer> friendsA = userA.friends;
+            HashSet<Integer> friendsB = userB.friends;
+            if (friendsA.contains(userB.userId) || friendsB.contains(userA.userId)) {
+                leftA = userA;
+                rightB = userB;
+                break;
+            }
+
+            if (friendsA.retainAll(friendsB) || friendsB.retainAll(friendsA)) {
+                leftA = userA;
+                rightB = userB;
+                commonFriendSet = friendsA;
+                break;
+            }
+
+            for (Integer fa : friendsA) {
+                getUser(fa).fromId = userA.userId;
+                queueA.offer(fa);
+            }
+
+            for (Integer fb : friendsB) {
+                getUser(fb).fromId = userB.userId;
+                queueB.offer(fb);
+            }
+        }
+        while (leftA.fromId != -1) {
+            friendLeftLink.addFirst(leftA.userId);
+        }
+        friendLeftLink.add(userIdA);
+        while (rightB.fromId != -1) {
+            friendRightLink.addLast(leftA.userId);
+        }
+        friendRightLink.addLast(userIdB);
+
+        FriendLink link = new FriendLink();
+        link.aToCommon = friendLeftLink;
+        link.commonToB = friendRightLink;
+        link.common = commonFriendSet;
+        return link;
+    }
+
+    public class FriendLink {
+        LinkedList<Integer> aToCommon;
+        LinkedList<Integer> commonToB;
+        HashSet<Integer> common;
+
+        private String getLinkString(LinkedList list) {
+            if (list == null || list.isEmpty()) {
+                return "";
+            }
+            if (list.size() == 1) {
+                return String.valueOf(list.get(0));
+            }
+            return String.join(" > ", list);
+        }
+
+        @Override
+        public String toString() {
+            return "{" + getLinkString(aToCommon) + " > " + (common == null ? "" : (common + " > ")) + getLinkString(commonToB) + '}';
+        }
+    }
+
     private Node getUser(int userId) {
         return users[userId];
     }
@@ -88,6 +174,8 @@ public class FriendSearch {
         Node zl = users[3];
         zl.friends.add(0);
 
-        System.out.println(new FriendSearch(users).bfsGetFriends0(3));
+//        System.out.println(new FriendSearch(users).bfsGetFriends0(3));
+        System.out.println(new FriendSearch(users).getMinFriendLink(3, 0));
+
     }
 }
