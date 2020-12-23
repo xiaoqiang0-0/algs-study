@@ -11,6 +11,8 @@
         <module>chapter-1</module>
         <module>chapter-2</module>
         <module>geek-time</module>
+        <module>commons</module>
+        <module>leet-code</module>
     </modules>
 
     <build>
@@ -26,4 +28,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
