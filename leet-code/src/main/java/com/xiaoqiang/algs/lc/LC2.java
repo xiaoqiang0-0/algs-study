@@ -1,4 +1,6 @@
-package com.xiaoqiang.algs.interview;
+package com.xiaoqiang.algs.lc;
+
+import com.xiaoqiang.algs.struct.ListNode;
 
 /**
  * 2. 两数相加
@@ -14,9 +16,9 @@ package com.xiaoqiang.algs.interview;
  * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
-public class Leetcode2 {
+public class LC2 {
     public static void main(String[] args) {
-        Leetcode2 l2 = new Leetcode2();
+        LC2 l2 = new LC2();
         ListNode n1 = l2.intToListNode(342);
         ListNode n2 = l2.intToListNode(465);
         ListNode n3 = l2.addTwoNumbers(n1, n2);
@@ -80,22 +82,5 @@ public class Leetcode2 {
             val = val / 10;
         }
         return h;
-    }
-}
-
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
     }
 }

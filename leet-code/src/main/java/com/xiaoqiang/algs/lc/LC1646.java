@@ -1,4 +1,4 @@
-package com.xiaoqiang.algs.interview;
+package com.xiaoqiang.algs.lc;
 
 /**
  * 给你一个整数 n 。按下述规则生成一个长度为 n + 1 的数组 nums ：
@@ -36,9 +36,9 @@ package com.xiaoqiang.algs.interview;
  * 输出：2
  * 解释：根据规则，nums[0]、nums[1]、nums[2] 和 nums[3] 之中的最大值是 2
  */
-public class Leetcode1646 {
+public class LC1646 {
     public static void main(String[] args) {
-        System.out.println(new Leetcode1646().getMaximumGenerated(3));
+        System.out.println(new LC1646().getMaximumGenerated(3));
     }
 
     public int getMaximumGenerated(int n) {

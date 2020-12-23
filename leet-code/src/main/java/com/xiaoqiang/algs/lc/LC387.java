@@ -1,12 +1,12 @@
-package com.xiaoqiang.algs.interview;
+package com.xiaoqiang.algs.lc;
 
 /**
  * 387. 字符串中的第一个唯一字符
  *     charTable[i][2],分别存储某一个字符出现的次数和位置, i = c - 'a'
  */
-public class Leetcode387 {
+public class LC387 {
     public static void main(String[] args) {
-        System.out.println(new Leetcode387().firstUniqChar("itwqbtcdprfsuprkrjkausiterybzncbmdvkgljxuekizvaivszowqtmrttiihervpncztuoljftlxybpgwnjb"));
+        System.out.println(new LC387().firstUniqChar("itwqbtcdprfsuprkrjkausiterybzncbmdvkgljxuekizvaivszowqtmrttiihervpncztuoljftlxybpgwnjb"));
     }
 
     public int firstUniqChar(String s) {

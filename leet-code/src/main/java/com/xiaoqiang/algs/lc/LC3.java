@@ -1,12 +1,12 @@
-package com.xiaoqiang.algs.interview;
+package com.xiaoqiang.algs.lc;
 
 /**
  * 3. 无重复字符的最长子串
  * dp[i] 存储到当前位置不重复的最长子串
  */
-public class Leetcode3 {
+public class LC3 {
     public static void main(String[] args) {
-        System.out.println(new Leetcode3().lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(new LC3().lengthOfLongestSubstring("abcabcbb"));
     }
 
     public int lengthOfLongestSubstring(String s) {

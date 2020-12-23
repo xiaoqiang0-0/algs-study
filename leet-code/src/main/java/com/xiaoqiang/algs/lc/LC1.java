@@ -1,4 +1,4 @@
-package com.xiaoqiang.algs.interview;
+package com.xiaoqiang.algs.lc;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,9 +6,9 @@ import java.util.Map;
 /**
  * 两数之和
  */
-public class Leetcode1 {
+public class LC1 {
     public static void main(String[] args) {
-        for (int i : new Leetcode1().twoSum(new int[]{3, 2, 3}, 6)) {
+        for (int i : new LC1().twoSum(new int[]{3, 2, 3}, 6)) {
             System.out.print(i);
             System.out.print(",");
         }
