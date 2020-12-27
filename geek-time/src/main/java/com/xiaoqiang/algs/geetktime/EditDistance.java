@@ -17,6 +17,9 @@ public class EditDistance {
         if (a == null || b == null) {
             return -1;
         }
+        if (a.length()==0||b.length()==0) {
+            return Math.abs(a.length()-b.length());
+        }
 
         int[][] d = new int[a.length() + 1][b.length() + 1];
 
@@ -42,6 +45,6 @@ public class EditDistance {
     }
 
     public static void main(String[] args) {
-        System.out.println(getStrDistance("Hello1", "hello"));
+        System.out.println(getStrDistance("pneumonoultramicroscopicsilicovolcanoconiosis", "ultramicroscopically"));
     }
 }
