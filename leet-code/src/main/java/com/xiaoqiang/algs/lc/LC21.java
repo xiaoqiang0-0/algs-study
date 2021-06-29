@@ -1,6 +1,5 @@
 package com.xiaoqiang.algs.lc;
 
-import com.xiaoqiang.algs.lc.LC206.ListNode;
 
 public class LC21 {
 
