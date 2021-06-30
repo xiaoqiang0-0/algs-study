@@ -13,6 +13,7 @@
         <module>geek-time</module>
         <module>commons</module>
         <module>leet-code</module>
+        <module>sort</module>
     </modules>
 
     <build>
