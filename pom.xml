@@ -14,6 +14,7 @@
         <module>commons</module>
         <module>leet-code</module>
         <module>sort</module>
+        <module>search</module>
     </modules>
 
     <build>
