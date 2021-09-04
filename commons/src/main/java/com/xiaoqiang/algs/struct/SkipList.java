@@ -102,9 +102,7 @@ public class SkipList {
                     newNode.forwards[i] = next;
                 }
             }
-
         }
-
     }
 
     /**
